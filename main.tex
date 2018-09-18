@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath,amscd}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{tikz-cd}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+
+
+\title{Notes}
+\author{Yiran Cheng}
+
+\begin{document}
+
+\maketitle
+\section{What has been done so far}
+Let $X\subset \mathbb P^4$ be a smooth cubic threefold, and $\{X_t\}$ be a generic pencil of hyperplane sections. This defines a curve $C$ together with a branch cover $\pi \colon C \to \mathbb P^1$ of degree $27$ (correspond to the $27$ lines in $X_t$). Our goal is to understand this $C$.
+
+\subsection{Smoothness and connectedness}
+Firstly we have
+\begin{proposition}
+Let $C$ be defined above. Then it is smooth and connected.
+\end{proposition}
+\begin{proof}
+For this, look at the universal family $\mathfrak X  \subset |\mathcal O_{\mathbb P^4}(1)|\times\mathbb P^4$ defined by intersection of $\Sigma a_i x_i=0$ with $X$. Then we get the universal Fano variety of lines  $F(\mathfrak X)\subset |\mathcal O(1)|\times \mathbb G(1,4)$. It has two natural projections: the first factor projection $p_1 \colon F(\mathfrak X)\to |\mathcal O(1)|=\check {\mathbb P^4}$ is generically finite of degree $27$, and the second factor projection $p_2\colon F(\mathfrak X)\to\mathbb G(1,4)$ induces the map to its image $p'_2$ which is a projective bundle, hence $F(\mathfrak X)$ is smooth. Consider the complete linear system $|\mathcal O(1)|$ on $\check{\mathbb P^4}$. Then $\pi ^* |\mathcal O(1)|$ gives a linear system on $F(\mathfrak X)$ which is base-point-free (because $|\mathcal O(1)|$ is). By Bertini's theorem, the generic divisor in $\pi ^* |\mathcal O(1)|$ is smooth and connected. This gives the diagram
+$$
+\begin{tikzcd}
+F(\mathfrak X)  \arrow [d] & \arrow[l] \pi^*D\arrow[d]\\
+\check{\mathbb P^4}   & \arrow[l] D \cong \check{\mathbb P^3}\text{.}
+\end{tikzcd}
+$$
+Repeat it twice, we get
+$$
+\begin{tikzcd}
+F(\mathfrak X)  \arrow [d] & \arrow[l] F(\mathfrak X)_{\mathbb P^1}\cong C  \arrow[d]\\
+\check{\mathbb P^4}   & \arrow[l] \check{\mathbb P^1}
+\end{tikzcd}
+$$
+for generic lines $\check{\mathbb P^1} \hookrightarrow \check{\mathbb P^4}$. Hence $C$ is smooth and connected.
+\end{proof}
+
+\subsection{Local computation for ramification}\label{generic_singular}
+Before moving on, let us do some local computation for the generic singular cubic surfaces. A generic singular cubic surface only has one ordinary double point as its singularity, so we may take a affine chart centered at the ordinary double point. This correspond to some cubic polynomial $f(x,y,z)=0$ in $\mathbb A^3$ with $(0,0,0)$ the double point. Let $f_i$ be the homogeneous degree $i$ part. Then $f=f_3+f_2+f_1+f_0$. Since $f(0,0,0)=0$, $f_0=0$; and $(0,0,0)$ is ordinary double point, hence  $f_1=0$. Let $l$ be any line through the origin, so we can write $l=\{(ta,tb,tc)\}$. If $l\subset S$, then $t^3f_3(a,b,c)+t^2f_2(a,b,c)=0$, hence $[a:b:c]$ is the intersection of $f_2$ and $f_3$, which in generic case has $6$ solutions. We denote the $6$ lines by $l_1,\ldots,l_6$. Consider the intersection of $S$ with the plane spanned by $l_i$ and $l_j$. The residue of $l_i \cdot l_j$ has to be a line (denoted by $l_{ij}$). On the other hand, for any other line $l'$ not through the origin, consider the intersection of $S$ with the plane spanned by $l'$ and the origin. The residue of $l'$ has to be two lines through the origin, hence $l'$ is some $l_{ij}$. In fact $l_i$ is of multiplicity $2$, hence we get $2\cdot 6+\binom{6}{2}=27$ lines with multiplicity.
+
+From this we can see how the map $\pi\colon C\to \mathbb P^1$ is  ramified. For any branch value $t_0$, $\pi^{-1}(t_0)$ consists of $6$ double points $[l_i]$ and $15$ single points $[l_{ij}]$. For $t$  very near to $t_0$, the fiber $\pi^{-1}(t)$ consists $27$ single points which can be divided into $6$ pairs (split from $[l_i]$) and $15$ single points (come from $[l_{ij}]$). Let $\alpha$ be a simple loop around $t$ which encloses no other branch values. We can choose $\alpha$ very close to $t$, then by continuity the permutation induced by $\alpha$ will interchange the $6$ pairs of points and remain the other $15$ single points. (This used the smoothness of $C$. Otherwise $\alpha$ may also remain some pairs)
+
+This has the following corollary:
+
+\begin{corollary}
+The branch cover $\pi$ is not Galois.
+\end{corollary}
+
+
+
+\subsection{Discriminant divisor}
+Now look at the second projection $F(\mathfrak X)\to |\mathcal O(1)|$, and let $D\subset |\mathcal O(1)|$ be the discriminant divisor. Let us study $D$. Note that the family $\mathfrak X \to |\mathcal O(1)|$ also has a discriminant divisor, say $\tilde D$. Since smooth cubic surface consists $27$ single lines, we have $D\subset \tilde D$. We claim $D= \tilde D$. For this, we only need to show that if the Fano variety of lines of some cubic surface $S$ is smooth (which corresponding to the case $S$ consists exactly $27$ single lines), then $S$ itself is smooth.
+
+\begin{lemma}
+Let $S\subset \mathbb P^3$ be a cubic hypersurface such that $F(S)$ is smooth, then $S$ is smooth.
+\end{lemma}
+
+\begin{proof}
+Let $\mathfrak S\to |\mathcal O(3)_{\mathbb P^3}|$ be the universal family of cubic surface, and $\tilde{\mathcal D}\subset |\mathcal O(3)_{\mathbb P^3}|$ be the discriminant divisor. Let $\mathcal D\subset |\mathcal O(3)_{\mathbb P^3}|$ be the discriminant divisor of the family $F(\mathfrak S) \to |\mathcal O(3)_{\mathbb P^3}|$. Easy to see $\mathcal D \subset \tilde {\mathcal D}$. From \cite[Thm. 2.2]{Huy} we know $\tilde {\mathcal D}$ is irreducible, and they have the same dimension (because the generic point in $\tilde {\mathcal D}$ corresponding to the case in Section\ref{generic_singular}), hence $\mathcal D=\tilde{\mathcal D}$.
+\end{proof}
+
+Then the degree of $D$ is nothing but the degree of $\tilde D$, which is equal to the degree of the dual hypersurface $X^\vee$. And ${\rm deg}(X^\vee)= 3\cdot 2^3=24$. (cf. \cite[Prop.2.9]{EH})
+
+Combining with Section\ref{generic_singular}, we get
+
+\begin{corollary}
+ The branch cover $\pi \colon C\to \mathbb P^1$ has precisely $24$ branch values with multiplicity $2$. In particular, the Riemann--Hurwitz formula reads $e(C)=27\cdot 2 -24 \cdot 6=-90$, hence $g(C)=46$.
+\end{corollary}
+
+\subsection{Monodromy group}
+
+Now we want to compute the monodromy group of $\pi \colon C \to \mathbb P^1$.
+
+Let $X\subset \mathbb P^4$ be a fixed smooth cubic threefold, $\{X_t\}_{t\in \mathbb P^1}$ be a Lefschetz pencil of hyperplane sections on $X$ with base locus $B$, $\tilde X$ be its total space. Easy to see $\tilde X$ is the blow up of $X$ along $B$. Without loss of generality we may assume $X_0$ and $X_\infty$ are both regular. 
+
+%Let 
+%$$i_t \colon X_t \hookrightarrow X, ~ j_t \colon X_t \hookrightarrow \tilde X$$
+%be the inclusions.
+
+
+Since $X_0$ comes from hyperplane section, by \cite[Equation (1.5)]{V} we have
+$$[\omega_{X_0}] \cup ~ =j^*\circ j_*\colon  H^{2}(X_0) \xrightarrow{j_*}  H^{4}(X) \xrightarrow{j^*}  H^{4}(X_0) $$
+and Lefschetz hyperplane theorem says this $j^*$ here is an isomorphism. Hence the primitive cohomology equals the vanishing cohomology $\text{Ker}j_*$.
+
+On the other hand, the Poincar\'{e} duality gives the vanishing homology
+$$H_{2}(X_0)_\text{van}=\text{Ker}(H_{2}(X_0) \xrightarrow{j_*}  H_{4}(X))$$
+which by \cite[Lemma 2.26]{V} is equal to
+$$\text{Ker}(H_{2}(X_0) \xrightarrow{i_*}  H_{2}(\tilde X-X_\infty)) \text{.}$$
+% \xrightarrow{\iota_*} H_{2}(\tilde X) \xrightarrow{\pi_*} H_{2}(X)
+
+
+Hence
+$$H_{2}(X_0)_\text{prim}=H_{2}(X_0)_\text{van}=\text{Ker}(H_{2}(X_0) \xrightarrow{i_*}  H_{2}(\tilde X-X_\infty)) \text{.}$$
+Note the map $i\colon X_0 \to \tilde X-X_\infty$ is the inclusion of some fibre in the fiberation $\tilde X -X_\infty \to \mathbb C =\mathbb P^1-\infty$ which is of Morse type. Let $0_1, \ldots, 0_{24}$ be those critical values. By local computation (cf.\cite[Thm.2.16]{V}) there exists small disk $\Delta_i$ around $0_i$ and some $t_i\in \Delta_i^*$ such that $X_{\Delta_i}$ can be retracted by deformation onto the union of $X_{t_i}$ with an $3$-dimensional ball glued to $X_{t_i}$ along vanishing sphere $S^2_i$, hence $H^2(X_{t_i})$ is generated by $[S_i]$ . Let $\gamma_i$ be the paths in $\mathbb C$ joining $0$ to $t_i$. $\gamma_i$ induced a diffeomorphism from $X_0$ to $X_{t_i}$. The pullback of $[S^2_i]$ to $H_2(X_0)$ is denoted by $\delta_i$. Easy to see $\mathbb C$ admits a retraction by deformation onto the union of the disks $\Delta_i$ with the paths $\gamma_i$. Since $\tilde X -X_\infty \to \mathbb C$ is a fiberation, the retraction of $\mathbb C$ also induced a retraction of $\tilde X- X_\infty$ onto the union of $X$ with those $3$-balls glued along the pull back of $S^2_i$. This shows $\{\delta_i\}$ generate $\text{Ker}(H_{2}(X_0) \xrightarrow{i_*}  H_{2}(\tilde X-X_\infty))$ (cf. \cite[Cor.2.20]{V} ), hence the primitive cohomology of $X_0$. But it is known that $H_{2}(X_0)_\text{prim}=E_6(-1)$, so all the $\delta_i$ generate this $E_6(-1)$. By Picard-Lefschetz formula (cf. \cite[Thm.3.16]{V}) the monodromy action of the loop $\gamma_i^{-1} *\partial \Delta_i *\gamma_i$ is of the form
+$$s_{\delta_i}(\alpha)=\alpha+<\alpha,\delta_i>\delta_i$$
+which turns out to be the reflection along $\delta_i$ (means the reflection along the associated hyperplane). Since $[\gamma_i^{-1} *\partial \Delta_i *\gamma_i]$ generate $\pi_1(\mathbb C-\{t_1,\ldots,t_{24}\})$, $s_{\delta_i}$ generate the monodromy group, say $W$.
+
+Note that we can add a minus to some $\delta_i$ to make all $\delta_i$ lie on one side of some hyperplane, and this does not change $s_{\delta_i}$. So we may assume $\{\delta_i\}$ contains a base of the root system. Let $W(E_6)$ be the group generated by reflections along all vectors in $E_6(-1)$, $W'(E_6)$ be the subgroup generated by a base of the root system. So $W'(E_6)\subset W \subset W(E_6)$. But $W'(E_6)=W(E_6)$ (cf. \cite[Sec.10.3]{Hum}). Hence $W=W(E_6)$.
+
+
+The above argument tells the monodromy group on cohomology is $W(E_6)$. Since any homeomorphism induced by loop preserves $\mathcal O(1)$ (because they are all induced by $\mathcal O_{\mathbb P^4}(1)$), we only need to care about $H_2(X_0)_\text{prim}$. Note that being a line is a purely numerical condition, so cohomology group determines lines; on the other hand $H_2(X_0)_\text{prim}\cong W(E_6)$ is determined by the all the $2\cdot 27=54$ fundamental weights which can be identified with lines, so lines determines cohomology group. Therefore the monodromy group of $C=F(\mathfrak X_{\mathbb P^1})\to \mathbb P^1$ is also $W(E_6)$.
+
+Also note that by \cite[Sec.1]{Ha} this is the Galois group of its Galois closure. 
+
+\subsection{(On-going)}
+Let $\mathcal M$ be the moduli space of all semi-stable cubic surfaces. Then hyperplane sections of $X$ gives a natural map on a dense open set $U\subset \check{\mathbb P^4}$
+$$f\colon U\to \mathcal M \text{.}$$
+
+We want to prove $f$ is dominant. 
+
+%We still use $\mathfrak X \to \mathbb P^{19}=|\mathcal O_{\mathbb P^3}(3)|$  to denote the universal family of cubic surfaces with discriminant divisor $D$, $\mathfrak Y \to \mathbb P^4=|\mathcal O_{\mathbb P^4}(1)|$ the family of hyperplane sections of a fixed smooth cubic threefold with discriminant divisor $D'$. 
+
+
+
+%With this lemma, every  loop $\gamma$ in $\mathbb P^{19}\backslash D$ can be firstly assumed only contains those types comes from hyperplane sections of $Y$ , and then can be lifted to  $\mathbb P^4\backslash D'$ (may not unique). But the problem is, the lifted path may not be a loop. To solve this, we need to find some type of cubic surfaces whose corresponding set of hyperplanes in $\mathbb P^4\backslash D'$ is path- connected. We call cubic surfaces with this property (with respect to $Y$) the ferry type. For example, if $Y$ is defined by $x_0^3+x_1^3+x_2^3+x_3^3+x_4^3=0$, then the surfaces of type $x_0^3+x_1^3+x_2^3+x_3^3=0$ is a ferry type, corresponding to the hyperplanes with coordinates $[0:\ldots:\lambda:\ldots:\mu:\ldots:0]$ but some finite points. If the ferry type exists, then we can lift $\gamma$ to some loop, hence the monodromy group of $\mathfrak Y\to \mathbb P^4$ is the full $W(E_6)$. For a general pencil $i: \mathbb P^1 \to \mathbb P^4$, the map on fundamental groups $\pi_1(\mathbb P^1\backslash D')\xrightarrow{i_*} \pi_1(\mathbb P^4\backslash D')$ is surjective [\cite{V}, Thm. 3.22]. Hence the monodromy group of the pullback family $\mathfrak Y_{\mathbb P^1}\to \mathbb P^1$ is also $W(E_6)$. And from discussion of last semester, this is precisely the monodromy group of $C=F(\mathfrak Y_{\mathbb P^1})\to \mathbb P^1$.
+
+
+%Note the $27$ lines can be identified as the weights of the $27$ dimensional representation of $E_6$, so each fiber of the $27$ sheeted cover is the quotient of $W(E_6)$ by the stabilizer $Stab(w)$ where $w$ is some weight. Hence the monodromy group of $\pi$ is $W(E_6)\cap S_{26}=W(D_5)$.
+
+
+%as a subgroup of ${\rm GL}(H^2(S,\mathbb Z))$, where $S$ is some fixed smooth cubic surface.
+
+%The family $\mathfrak X_{\mathbb P^1}\to \mathbb P^1$ can be obtained by pulling back:
+
+%$$
+%\begin{tikzcd}
+%\mathfrak Y  \arrow [d] & \arrow[l] \mathfrak X_{\mathbb P^1}  \arrow[d]\\
+%\mathbb P^N   & \arrow[l,"i"] \mathbb P^1
+%\end{tikzcd}
+%$$
+
+
+
+ 
+\bigskip
+
+\section{Questions}
+
+\begin{enumerate}
+\item How to prove $f$ dominant? (A wrong attempt: https://v2.overleaf.com/read/jhrvvhgxhfxg)
+\end{enumerate}
+
+
+
+
+%Regard smooth cubic surface as blow up  $6$ points in general position on the plane. I want to understand what happens when the six points moving to some non general position? For example,  when the $6$ point moving to one conic, this should correspond to the case we discussed in \ref{generic_singular}, and we can see this by blowing up $6$ points and contract the conic; what will happen when $3$ points moving to one line? (because this is also the generic singular case, so it should also correspond to the case in \ref{generic_singular} I think?)
+
+
+
+\item \begin{thebibliography}{6}
+
+\bibitem{EH}
+David Eisenbud and Joe Harris,
+\textit{3624 and All That},
+Cambridge University Press, Cambridge, 2016.
+
+\bibitem{H}
+Joe Harris,
+\textit{Galois Groups of Enumerative Problems},
+Duke Mathematical Journal, 1979.
+
+\bibitem{Ha}
+Robin Hartshorne,
+\textit{Algebraic Geometry},
+Springer-Verlag, 1977.
+
+\bibitem{Hum}
+James E. Humphreys,
+\textit{Introduction to Lie Algebras and Representation Theory},
+Springer-Verlag, 1972.
+
+\bibitem{Huy}
+Daniel Huybrechts,
+\textit{Cubic Hypersurfaces},
+Online notes available: 
+http://www.math.uni-bonn.de/people/huybrech/Notes.pdf.
+
+\bibitem{V}
+Claire Voisin,
+\textit{Hodge Theory and Complex Algebraic Geometry II},
+Cambridge University Press, Cambridge, 2003.
+
+
+
+
+
+
+\end{thebibliography}
+
+\end{document}
+
